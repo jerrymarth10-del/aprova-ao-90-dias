@@ -1,742 +1,752 @@
-!DOCTYPE html
-html lang=pt-BR
-head
-  meta charset=UTF-8 
-  meta name=viewport content=width=device-width, initial-scale=1.0 
-  titleMétodo 90Dtitle
-  style
-    root{
-      --bg#050505;
-      --bg-soft#0d0d0d;
-      --card#121212;
-      --text#ffffff;
-      --muted#b8b0a8;
-      --accent#f0a33a;
-      --green#28c75a;
-      --green-dark#20aa4c;
-      --line#2b2b2b;
-      --red#d62d45;
-      --shadow0 10px 30px rgba(0,0,0,.35);
-      --radius18px;
-      --max760px;
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Método 90D</title>
+  <style>
+    :root{
+      --bg:#050505;
+      --bg-soft:#0d0d0d;
+      --card:#121212;
+      --text:#ffffff;
+      --muted:#b8b0a8;
+      --accent:#f0a33a;
+      --green:#28c75a;
+      --green-dark:#20aa4c;
+      --line:#2b2b2b;
+      --red:#d62d45;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:760px;
     }
 
-    {box-sizingborder-box}
-    html{scroll-behaviorsmooth}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
-      margin0;
-      font-family Arial, Helvetica, sans-serif;
-      backgroundvar(--bg);
-      colorvar(--text);
-      -webkit-font-smoothingantialiased;
-      text-renderingoptimizeLegibility;
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
 
-    img{max-width100%;displayblock}
-    a{text-decorationnone}
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
     .wrap{
-      width100%;
-      max-widthvar(--max);
-      margin0 auto;
-      padding0 18px;
+      width:100%;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 18px;
     }
 
     .top-urgency{
-      positionfixed;
-      top0;
-      left0;
-      width100%;
-      z-index9999;
-      backgroundvar(--red);
-      color#fff;
-      text-aligncenter;
-      font-weight700;
-      font-size13px;
-      line-height1.2;
-      padding9px 12px;
-      box-shadow0 4px 18px rgba(0,0,0,.25);
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:9999;
+      background:var(--red);
+      color:#fff;
+      text-align:center;
+      font-weight:700;
+      font-size:13px;
+      line-height:1.2;
+      padding:9px 12px;
+      box-shadow:0 4px 18px rgba(0,0,0,.25);
     }
 
     .page{
-      padding-top42px;
-      padding-bottom95px;
+      padding-top:42px;
+      padding-bottom:95px;
     }
 
     .hero{
-      positionrelative;
-      background
-        linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.76)),
-        url('assetshero-topo.png') center top  cover no-repeat;
-      min-height760px;
-      displayflex;
-      align-itemsflex-end;
+      position:relative;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.72)),
+        url('hero.jpg') center top / cover no-repeat;
+      min-height:740px;
+      display:flex;
+      align-items:flex-end;
     }
 
     .hero-content{
-      width100%;
-      padding28px 0 30px;
+      width:100%;
+      padding:28px 0 30px;
     }
 
     .badge{
-      displayinline-flex;
-      align-itemscenter;
-      gap10px;
-      backgroundrgba(0,0,0,.55);
-      border1px solid rgba(255,255,255,.08);
-      padding10px 14px;
-      border-radius14px;
-      margin-bottom16px;
-      box-shadowvar(--shadow);
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.08);
+      padding:10px 14px;
+      border-radius:14px;
+      margin-bottom:16px;
+      box-shadow:var(--shadow);
     }
 
     .badge-icon{
-      width52px;
-      height52px;
-      displayflex;
-      align-itemscenter;
-      justify-contentcenter;
-      background#151515;
-      border2px solid #d99a4b;
-      color#d99a4b;
-      font-size28px;
-      border-radius6px;
-      flex0 0 52px;
+      width:52px;
+      height:52px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#151515;
+      border:2px solid #d99a4b;
+      color:#d99a4b;
+      font-size:28px;
+      border-radius:6px;
+      flex:0 0 52px;
     }
 
     .badge-text small{
-      displayblock;
-      color#d4c6b8;
-      letter-spacing4px;
-      font-size10px;
-      margin-bottom2px;
+      display:block;
+      color:#d4c6b8;
+      letter-spacing:4px;
+      font-size:10px;
+      margin-bottom:2px;
     }
 
     .badge-text strong{
-      displayblock;
-      font-size20px;
-      line-height1.05;
+      display:block;
+      font-size:20px;
+      line-height:1.05;
     }
 
     .badge-text strong span{
-      colorvar(--accent);
+      color:var(--accent);
     }
 
     .meta{
-      displayflex;
-      flex-wrapwrap;
-      gap16px 22px;
-      color#c7b8a7;
-      font-size15px;
-      margin10px 0 20px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px 22px;
+      color:#c7b8a7;
+      font-size:15px;
+      margin:10px 0 20px;
     }
 
     .meta-item{
-      displayflex;
-      align-itemscenter;
-      gap8px;
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
     .meta-item .icon{
-      colorvar(--accent);
-      font-size18px;
-      line-height1;
+      color:var(--accent);
+      font-size:18px;
+      line-height:1;
     }
 
     .headline{
-      font-size28px;
-      line-height1.16;
-      font-weight800;
-      margin0 0 18px;
+      font-size:28px;
+      line-height:1.16;
+      font-weight:800;
+      margin:0 0 18px;
     }
 
-    .headline .accent{colorvar(--accent)}
+    .headline .accent{color:var(--accent)}
 
     .subheadline{
-      color#c5b8ae;
-      font-size17px;
-      line-height1.65;
-      margin0 0 24px;
+      color:#c5b8ae;
+      font-size:17px;
+      line-height:1.65;
+      margin:0 0 24px;
     }
 
     .cta-main{
-      displayblock;
-      width100%;
-      text-aligncenter;
-      backgroundvar(--green);
-      color#fff;
-      font-size21px;
-      font-weight900;
-      padding22px 18px;
-      border-radius16px;
-      box-shadow
+      display:block;
+      width:100%;
+      text-align:center;
+      background:var(--green);
+      color:#fff;
+      font-size:21px;
+      font-weight:900;
+      padding:22px 18px;
+      border-radius:16px;
+      box-shadow:
         0 0 0 1px rgba(255,255,255,.06) inset,
         0 0 35px rgba(40,199,90,.30);
-      transition.2s ease;
+      transition:.2s ease;
+      border:none;
+      cursor:pointer;
     }
 
-    .cta-mainhover{backgroundvar(--green-dark)}
+    .cta-main:hover{background:var(--green-dark)}
 
     .progress-area{
-      padding18px 0 10px;
+      padding:18px 0 10px;
     }
 
     .progress-row{
-      displayflex;
-      align-itemscenter;
-      gap12px;
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
 
     .progress-pill{
-      backgroundvar(--green);
-      color#fff;
-      font-weight800;
-      border-radius10px;
-      padding7px 12px;
-      font-size16px;
-      box-shadow0 0 16px rgba(40,199,90,.2);
-      flex0 0 auto;
+      background:var(--green);
+      color:#fff;
+      font-weight:800;
+      border-radius:10px;
+      padding:7px 12px;
+      font-size:16px;
+      box-shadow:0 0 16px rgba(40,199,90,.2);
+      flex:0 0 auto;
     }
 
     .progress-bar{
-      height14px;
-      background#2d2a28;
-      border-radius999px;
-      overflowhidden;
-      flex1;
+      height:14px;
+      background:#2d2a28;
+      border-radius:999px;
+      overflow:hidden;
+      flex:1;
     }
 
     .progress-fill{
-      width77%;
-      height100%;
-      backgroundlinear-gradient(90deg, #2fd764, #22c55e);
-      border-radius999px;
-      box-shadow0 0 18px rgba(40,199,90,.35);
+      width:77%;
+      height:100%;
+      background:linear-gradient(90deg, #2fd764, #22c55e);
+      border-radius:999px;
+      box-shadow:0 0 18px rgba(40,199,90,.35);
     }
 
     .progress-caption{
-      text-aligncenter;
-      font-size18px;
-      color#b9a89a;
-      margin-top10px;
+      text-align:center;
+      font-size:18px;
+      color:#b9a89a;
+      margin-top:10px;
     }
 
     .progress-caption strong{
-      colorvar(--green);
-      font-size20px;
+      color:var(--green);
+      font-size:20px;
     }
 
     .sticky-line{
-      positionsticky;
-      top42px;
-      z-index50;
-      background#1a140f;
-      colorvar(--accent);
-      border-top1px solid rgba(240,163,58,.2);
-      border-bottom1px solid rgba(240,163,58,.2);
-      padding12px 0;
-      overflowhidden;
-      white-spacenowrap;
-      margin-top18px;
+      position:sticky;
+      top:42px;
+      z-index:50;
+      background:#1a140f;
+      color:var(--accent);
+      border-top:1px solid rgba(240,163,58,.2);
+      border-bottom:1px solid rgba(240,163,58,.2);
+      padding:12px 0;
+      overflow:hidden;
+      white-space:nowrap;
+      margin-top:18px;
     }
 
     .ticker{
-      displayinline-block;
-      min-width200%;
-      animationticker 24s linear infinite;
-      font-size16px;
-      font-weight700;
-      letter-spacing1px;
+      display:inline-block;
+      min-width:200%;
+      animation:ticker 24s linear infinite;
+      font-size:16px;
+      font-weight:700;
+      letter-spacing:1px;
     }
 
     @keyframes ticker{
-      from{transformtranslateX(0)}
-      to{transformtranslateX(-50%)}
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
     }
 
     .section{
-      padding36px 0;
+      padding:36px 0;
     }
 
     .section-dark{
-      backgroundlinear-gradient(180deg, #0b0b0b, #050505);
+      background:linear-gradient(180deg, #0b0b0b, #050505);
     }
 
     .title{
-      font-size25px;
-      line-height1.18;
-      font-weight900;
-      text-aligncenter;
-      margin0 0 26px;
+      font-size:25px;
+      line-height:1.18;
+      font-weight:900;
+      text-align:center;
+      margin:0 0 26px;
     }
 
-    .title .accent{colorvar(--accent)}
+    .title .accent{color:var(--accent)}
 
     .proof-carousel{
-      overflowhidden;
-      positionrelative;
+      overflow:hidden;
+      position:relative;
     }
 
     .proof-track{
-      displayflex;
-      gap16px;
-      widthmax-content;
-      animationproofScroll 26s linear infinite;
+      display:flex;
+      gap:16px;
+      width:max-content;
+      animation:proofScroll 26s linear infinite;
     }
 
-    .proof-carouselhover .proof-track{
-      animation-play-statepaused;
+    .proof-carousel:hover .proof-track{
+      animation-play-state:paused;
     }
 
     @keyframes proofScroll{
-      from{transformtranslateX(0)}
-      to{transformtranslateX(-50%)}
+      from{transform:translateX(0)}
+      to{transform:translateX(-50%)}
     }
 
     .proof-card{
-      width220px;
-      min-width220px;
-      height470px;
-      background#0d0d0d;
-      border1px solid rgba(255,255,255,.06);
-      border-radius20px;
-      overflowhidden;
-      box-shadowvar(--shadow);
+      width:220px;
+      min-width:220px;
+      background:#0d0d0d;
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
     }
 
     .proof-card img{
-      width100%;
-      height100%;
-      object-fitcover;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:blur(.6px);
     }
 
     .offer-intro{
-      color#b9a89a;
-      font-size17px;
-      line-height1.7;
-      text-aligncenter;
-      margin0 auto 26px;
-      max-width680px;
+      color:#b9a89a;
+      font-size:17px;
+      line-height:1.7;
+      text-align:center;
+      margin:0 auto 26px;
+      max-width:680px;
     }
 
     .pricing{
-      displaygrid;
-      gap22px;
+      display:grid;
+      gap:22px;
     }
 
     .plan{
-      border-radius30px;
-      overflowhidden;
-      box-shadowvar(--shadow);
+      border-radius:30px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
     }
 
     .plan-inner{
-      padding28px 22px 26px;
-      border1px solid rgba(255,255,255,.08);
-      border-radius30px;
-      background#111;
+      padding:28px 22px 26px;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:30px;
+      background:#111;
     }
 
     .plan-basic .plan-inner{
-      background#111;
-      color#fff;
+      background:#111;
+      color:#fff;
     }
 
     .plan-vip{
-      border2px solid var(--green);
-      border-radius30px;
+      border:2px solid var(--green);
+      border-radius:30px;
     }
 
     .plan-label{
-      backgroundvar(--green);
-      color#fff;
-      text-aligncenter;
-      font-size15px;
-      font-weight900;
-      letter-spacing1px;
-      padding16px 12px;
-      text-transformuppercase;
+      background:var(--green);
+      color:#fff;
+      text-align:center;
+      font-size:15px;
+      font-weight:900;
+      letter-spacing:1px;
+      padding:16px 12px;
+      text-transform:uppercase;
     }
 
     .plan-vip .plan-inner{
-      background#f5f5f5;
-      color#111827;
-      bordernone;
-      border-radius0 0 28px 28px;
+      background:#f5f5f5;
+      color:#111827;
+      border:none;
+      border-radius:0 0 28px 28px;
     }
 
     .plan-title{
-      text-aligncenter;
-      font-size27px;
-      font-weight900;
-      margin4px 0 26px;
-      text-transformuppercase;
+      text-align:center;
+      font-size:27px;
+      font-weight:900;
+      margin:4px 0 26px;
+      text-transform:uppercase;
     }
 
     .features{
-      list-stylenone;
-      padding0;
-      margin0 0 26px;
-      displaygrid;
-      gap18px;
+      list-style:none;
+      padding:0;
+      margin:0 0 26px;
+      display:grid;
+      gap:18px;
     }
 
     .features li{
-      positionrelative;
-      padding-left42px;
-      font-size18px;
-      line-height1.5;
+      position:relative;
+      padding-left:42px;
+      font-size:18px;
+      line-height:1.5;
     }
 
-    .features libefore{
-      content✓;
-      positionabsolute;
-      left0;
-      top0;
-      font-size22px;
-      font-weight900;
-      colorvar(--green);
+    .features li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      font-size:22px;
+      font-weight:900;
+      color:var(--green);
     }
 
     .price-old{
-      text-aligncenter;
-      color#8e857d;
-      text-decorationline-through;
-      font-size20px;
-      margin2px 0 4px;
+      text-align:center;
+      color:#8e857d;
+      text-decoration:line-through;
+      font-size:20px;
+      margin:2px 0 4px;
     }
 
     .price-now-wrap{
-      text-aligncenter;
-      margin-bottom18px;
+      text-align:center;
+      margin-bottom:18px;
     }
 
     .price-now-text{
-      font-size22px;
-      margin-right6px;
+      font-size:22px;
+      margin-right:6px;
     }
 
     .price-now{
-      font-size74px;
-      line-height.95;
-      font-weight900;
-      letter-spacing-2px;
-      displayinline-block;
+      font-size:74px;
+      line-height:.95;
+      font-weight:900;
+      letter-spacing:-2px;
+      display:inline-block;
     }
 
     .installment{
-      text-aligncenter;
-      color#8e857d;
-      font-size16px;
-      margin-top8px;
+      text-align:center;
+      color:#8e857d;
+      font-size:16px;
+      margin-top:8px;
     }
 
     .plan-button{
-      displayblock;
-      width100%;
-      text-aligncenter;
-      backgroundvar(--green);
-      color#fff;
-      padding20px 18px;
-      border-radius16px;
-      font-size18px;
-      font-weight900;
-      box-shadow0 0 0 1px rgba(255,255,255,.06) inset;
+      display:block;
+      width:100%;
+      text-align:center;
+      background:var(--green);
+      color:#fff;
+      padding:20px 18px;
+      border-radius:16px;
+      font-size:18px;
+      font-weight:900;
+      box-shadow:0 0 0 1px rgba(255,255,255,.06) inset;
+      border:none;
+      cursor:pointer;
     }
 
     .bio-card{
-      background#111;
-      border1px solid rgba(255,255,255,.08);
-      border-radius26px;
-      padding18px;
-      box-shadowvar(--shadow);
+      background:#111;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:26px;
+      padding:18px;
+      box-shadow:var(--shadow);
     }
 
     .bio-photo{
-      width100%;
-      border-radius20px;
-      margin-bottom22px;
+      width:100%;
+      border-radius:20px;
+      margin-bottom:22px;
     }
 
     .bio-text{
-      color#b9a89a;
-      font-size20px;
-      line-height1.7;
+      color:#b9a89a;
+      font-size:20px;
+      line-height:1.7;
     }
 
     .bio-text strong{
-      color#fff;
+      color:#fff;
     }
 
     .bio-text .accent{
-      colorvar(--accent);
-      font-weight800;
+      color:var(--accent);
+      font-weight:800;
     }
 
     .faq{
-      displaygrid;
-      gap14px;
+      display:grid;
+      gap:14px;
     }
 
     .faq-item{
-      background#101010;
-      border1px solid rgba(255,255,255,.07);
-      border-radius18px;
-      padding18px;
+      background:#101010;
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:18px;
+      padding:18px;
     }
 
     .faq-item strong{
-      displayblock;
-      font-size18px;
-      margin-bottom8px;
+      display:block;
+      font-size:18px;
+      margin-bottom:8px;
     }
 
     .faq-item p{
-      margin0;
-      color#b9a89a;
-      line-height1.6;
-      font-size16px;
+      margin:0;
+      color:#b9a89a;
+      line-height:1.6;
+      font-size:16px;
     }
 
     .floating-cta{
-      positionfixed;
-      left50%;
-      transformtranslateX(-50%);
-      bottom12px;
-      z-index9998;
-      widthmin(calc(100% - 24px), 760px);
-      backgroundvar(--green);
-      color#fff;
-      text-aligncenter;
-      font-size18px;
-      font-weight900;
-      padding17px 18px;
-      border-radius999px;
-      box-shadow0 10px 25px rgba(0,0,0,.28), 0 0 30px rgba(40,199,90,.18);
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:12px;
+      z-index:9998;
+      width:min(calc(100% - 24px), 760px);
+      background:var(--green);
+      color:#fff;
+      text-align:center;
+      font-size:18px;
+      font-weight:900;
+      padding:17px 18px;
+      border-radius:999px;
+      box-shadow:0 10px 25px rgba(0,0,0,.28), 0 0 30px rgba(40,199,90,.18);
+      border:none;
+      cursor:pointer;
     }
 
     .muted-center{
-      text-aligncenter;
-      color#b9a89a;
-      font-size16px;
-      line-height1.7;
-      margin-top12px;
+      text-align:center;
+      color:#b9a89a;
+      font-size:16px;
+      line-height:1.7;
+      margin-top:12px;
     }
 
-    @media (max-width 640px){
-      .hero{min-height720px}
-      .headline{font-size27px}
-      .subheadline{font-size16px}
-      .badge-text strong{font-size18px}
-      .price-now{font-size66px}
-      .bio-text{font-size18px}
-      .title{font-size23px}
-      .proof-card{width205px; min-width205px; height440px;}
+    @media (max-width: 640px){
+      .hero{min-height:700px}
+      .headline{font-size:27px}
+      .subheadline{font-size:16px}
+      .badge-text strong{font-size:18px}
+      .price-now{font-size:66px}
+      .bio-text{font-size:18px}
+      .title{font-size:23px}
     }
-  style
-head
-body
-  div class=top-urgency
-    🔥 ÚLTIMAS VAGAS • ENCERRA EM span id=timer1000span
-  div
+  </style>
+</head>
+<body>
+  <script>
+    const linkBasico = "SEU_LINK_47_AQUI";
+    const linkVIP = "SEU_LINK_147_AQUI";
+  </script>
 
-  div class=page
-    section class=hero
-      div class=wrap hero-content
-        div class=badge
-          div class=badge-icon✓div
-          div class=badge-text
-            smallIMERSÃOsmall
-            strongMÉTODO span90 DIASspan PARA APROVAÇÃOstrong
-          div
-        div
+  <div class="top-urgency">
+    🔥 ÚLTIMAS VAGAS • ENCERRA EM <span id="timer">10:00</span>
+  </div>
 
-        div class=meta
-          div class=meta-itemspan class=icon📅spanspanAcesso imediatospandiv
-          div class=meta-itemspan class=icon⏰spanspanPlano organizado em 90 diasspandiv
-          div class=meta-itemspan class=icon🎥spanspanOnline + material complementarspandiv
-        div
+  <div class="page">
+    <section class="hero">
+      <div class="wrap hero-content">
+        <div class="badge">
+          <div class="badge-icon">✓</div>
+          <div class="badge-text">
+            <small>IMERSÃO</small>
+            <strong>MÉTODO <span>90 DIAS</span> PARA APROVAÇÃO</strong>
+          </div>
+        </div>
 
-        h1 class=headline
-          span class=accent90 dias com direçãospan para sair da estagnação, estudar com estratégia e evoluir de verdade nos concursos.
-        h1
+        <div class="meta">
+          <div class="meta-item"><span class="icon">📅</span><span>Acesso imediato</span></div>
+          <div class="meta-item"><span class="icon">⏰</span><span>Plano organizado em 90 dias</span></div>
+          <div class="meta-item"><span class="icon">🎥</span><span>Online + material complementar</span></div>
+        </div>
 
-        p class=subheadline
+        <h1 class="headline">
+          <span class="accent">90 dias com direção</span> para sair da estagnação, estudar com estratégia e evoluir de verdade nos concursos.
+        </h1>
+
+        <p class="subheadline">
           Você vai receber um plano estruturado para organizar sua rotina, revisar do jeito certo, usar melhor as apostilas e parar de estudar sem resultado.
-        p
+        </p>
 
-        a class=cta-main href=SEU_LINK_EDUZZ_AQUIQUERO ACESSAR AGORAa
+        <button class="cta-main" onclick="window.location.href=linkVIP">QUERO ACESSAR AGORA</button>
 
-        div class=progress-area
-          div class=progress-row
-            div class=progress-pill77%div
-            div class=progress-bar
-              div class=progress-filldiv
-            div
-          div
-          div class=progress-caption
-            Lote atual por apenas strongR$47strong
-          div
-        div
-      div
-    section
+        <div class="progress-area">
+          <div class="progress-row">
+            <div class="progress-pill">77%</div>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+          <div class="progress-caption">
+            Lote atual por apenas <strong>R$47</strong>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    div class=sticky-line
-      div class=ticker
+    <div class="sticky-line">
+      <div class="ticker">
         • MÉTODO 90 DIAS • ESTUDE COM DIREÇÃO • MATERIAL + PLANO + ESTRATÉGIA • MÉTODO 90 DIAS • ESTUDE COM DIREÇÃO • MATERIAL + PLANO + ESTRATÉGIA •
-      div
-    div
+      </div>
+    </div>
 
-    section class=section section-dark
-      div class=wrap
-        h2 class=titleRESULTADOS E MENSAGENS DE QUEM span class=accentJÁ COMPROUspanh2
+    <section class="section section-dark">
+      <div class="wrap">
+        <h2 class="title">RESULTADOS E MENSAGENS DE QUEM <span class="accent">JÁ COMPROU</span></h2>
 
-        div class=proof-carousel
-          div class=proof-track
-            div class=proof-cardimg src=provasprova1.jpg alt=Print de mensagem 1div
-            div class=proof-cardimg src=provasprova2.jpg alt=Print de mensagem 2div
-            div class=proof-cardimg src=provasprova3.jpg alt=Print de mensagem 3div
-            div class=proof-cardimg src=provasprova1.jpg alt=Print de mensagem 1 duplicadodiv
-            div class=proof-cardimg src=provasprova2.jpg alt=Print de mensagem 2 duplicadodiv
-            div class=proof-cardimg src=provasprova3.jpg alt=Print de mensagem 3 duplicadodiv
-          div
-        div
-      div
-    section
+        <div class="proof-carousel">
+          <div class="proof-track">
+            <div class="proof-card"><img src="print1.jpg" alt="Print de mensagem 1"></div>
+            <div class="proof-card"><img src="print2.jpg" alt="Print de mensagem 2"></div>
+            <div class="proof-card"><img src="print3.jpg" alt="Print de mensagem 3"></div>
+            <div class="proof-card"><img src="print1.jpg" alt="Print de mensagem 1 duplicado"></div>
+            <div class="proof-card"><img src="print2.jpg" alt="Print de mensagem 2 duplicado"></div>
+            <div class="proof-card"><img src="print3.jpg" alt="Print de mensagem 3 duplicado"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    section class=section
-      div class=wrap
-        p class=offer-intro
+    <section class="section">
+      <div class="wrap">
+        <p class="offer-intro">
           Escolha o acesso ideal para o seu momento. O plano básico já te entrega o método organizado. O VIP adiciona acompanhamento mais próximo e suporte direto.
-        p
+        </p>
 
-        div class=pricing
-          div class=plan plan-basic
-            div class=plan-inner
-              h3 class=plan-titleIngresso Básicoh3
+        <div class="pricing">
+          <div class="plan plan-basic">
+            <div class="plan-inner">
+              <h3 class="plan-title">Ingresso Básico</h3>
 
-              ul class=features
-                liAcesso ao Método 90 Dias completoli
-                liTrajeto da aprovação em 90 diasli
-                liApostilas e materiais em PDFli
-                liPlano de estudo estruturadoli
-                liDirecionamento prático para estudar melhorli
-              ul
+              <ul class="features">
+                <li>Acesso ao Método 90 Dias completo</li>
+                <li>Trajeto da aprovação em 90 dias</li>
+                <li>Apostilas e materiais em PDF</li>
+                <li>Plano de estudo estruturado</li>
+                <li>Direcionamento prático para estudar melhor</li>
+              </ul>
 
-              div class=price-oldDe R$147div
-              div class=price-now-wrap
-                span class=price-now-textPor R$span
-                span class=price-now47span
-              div
-              div class=installment(pagamento único)div
+              <div class="price-old">De: R$147</div>
+              <div class="price-now-wrap">
+                <span class="price-now-text">Por: R$</span>
+                <span class="price-now">47</span>
+              </div>
+              <div class="installment">(pagamento único)</div>
 
-              a class=plan-button href=SEU_LINK_EDUZZ_AQUIQUERO O INGRESSO BÁSICOa
-            div
-          div
+              <button class="plan-button" onclick="window.location.href=linkBasico">QUERO O INGRESSO BÁSICO</button>
+            </div>
+          </div>
 
-          div class=plan plan-vip
-            div class=plan-labelMais recomendadodiv
-            div class=plan-inner
-              h3 class=plan-titleIngresso VIPh3
+          <div class="plan plan-vip">
+            <div class="plan-label">Mais recomendado</div>
+            <div class="plan-inner">
+              <h3 class="plan-title">Ingresso VIP</h3>
 
-              ul class=features
-                liTudo do ingresso básicoli
-                liAcesso direto comigo no WhatsAppli
-                liSuporte para tirar dúvidas do métodoli
-                liPDFs extras e materiais exclusivosli
-                liOrientação mais próxima para aplicar o planoli
-              ul
+              <ul class="features">
+                <li>Tudo do ingresso básico</li>
+                <li>Acesso direto comigo no WhatsApp</li>
+                <li>Suporte para tirar dúvidas do método</li>
+                <li>PDFs extras e materiais exclusivos</li>
+                <li>Orientação mais próxima para aplicar o plano</li>
+              </ul>
 
-              div class=price-oldDe R$297div
-              div class=price-now-wrap
-                span class=price-now-textPor R$span
-                span class=price-now147span
-              div
-              div class=installment(pagamento único)div
+              <div class="price-old">De: R$297</div>
+              <div class="price-now-wrap">
+                <span class="price-now-text">Por: R$</span>
+                <span class="price-now">147</span>
+              </div>
+              <div class="installment">(pagamento único)</div>
 
-              a class=plan-button href=SEU_LINK_EDUZZ_AQUIQUERO O INGRESSO VIPa
-            div
-          div
-        div
-      div
-    section
+              <button class="plan-button" onclick="window.location.href=linkVIP">QUERO O INGRESSO VIP</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    section class=section section-dark
-      div class=wrap
-        h2 class=titleQUEM É span class=accentJÚNIORspanh2
+    <section class="section section-dark">
+      <div class="wrap">
+        <h2 class="title">QUEM É <span class="accent">JÚNIOR?</span></h2>
 
-        div class=bio-card
-          img class=bio-photo src=assetsjunior-bio.jpg alt=Foto de Júnior
+        <div class="bio-card">
+          <img class="bio-photo" src="hero.jpg" alt="Foto de Júnior">
 
-          div class=bio-text
-            p
-              strongJúniorstrong é empresário e criador do span class=accentMétodo 90Dspan, com experiência prática em organização, produtividade e construção de rotina para quem precisa estudar com mais direção.
-            p
+          <div class="bio-text">
+            <p>
+              <strong>Júnior</strong> é empresário e criador do <span class="accent">Método 90D</span>, com experiência prática em organização, produtividade e construção de rotina para quem precisa estudar com mais direção.
+            </p>
 
-            p
+            <p>
               Ao longo da sua trajetória, desenvolveu uma forma simples e objetiva de transformar material solto em um plano claro de execução, ajudando pessoas a saírem da estagnação e voltarem a ter confiança nos estudos.
-            p
+            </p>
 
-            p
+            <p>
               Hoje, seu foco é entregar um caminho mais direto para quem já tentou de tudo, mas ainda sente que estuda muito e evolui pouco.
-            p
-          div
-        div
+            </p>
+          </div>
+        </div>
 
-        p class=muted-center
+        <p class="muted-center">
           Método pensado para quem quer parar de estudar no escuro e começar a estudar com estratégia.
-        p
-      div
-    section
+        </p>
+      </div>
+    </section>
 
-    section class=section
-      div class=wrap
-        h2 class=titlePERGUNTAS span class=accentFREQUENTESspanh2
+    <section class="section">
+      <div class="wrap">
+        <h2 class="title">PERGUNTAS <span class="accent">FREQUENTES</span></h2>
 
-        div class=faq
-          div class=faq-item
-            strongEsse método é pra quem está começandostrong
-            pServe tanto para quem está começando quanto para quem já estuda, mas sente que está travado e sem direção.p
-          div
+        <div class="faq">
+          <div class="faq-item">
+            <strong>Esse método é pra quem está começando?</strong>
+            <p>Serve tanto para quem está começando quanto para quem já estuda, mas sente que está travado e sem direção.</p>
+          </div>
 
-          div class=faq-item
-            strongVou receber material juntostrong
-            pSim. O acesso inclui o método organizado e materiais complementares conforme o plano escolhido.p
-          div
+          <div class="faq-item">
+            <strong>Vou receber material junto?</strong>
+            <p>Sim. O acesso inclui o método organizado e materiais complementares conforme o plano escolhido.</p>
+          </div>
 
-          div class=faq-item
-            strongQual a diferença do VIPstrong
-            pNo VIP você recebe tudo do básico, além de suporte mais próximo e contato direto no WhatsApp para orientação.p
-          div
+          <div class="faq-item">
+            <strong>Qual a diferença do VIP?</strong>
+            <p>No VIP você recebe tudo do básico, além de suporte mais próximo e contato direto no WhatsApp para orientação.</p>
+          </div>
 
-          div class=faq-item
-            strongTem garantiastrong
-            pVocê pode configurar a garantia conforme a regra do seu checkout na Eduzz.p
-          div
-        div
-      div
-    section
-  div
+          <div class="faq-item">
+            <strong>Tem garantia?</strong>
+            <p>Você pode configurar a garantia conforme a regra do seu checkout na Eduzz.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
-  a class=floating-cta href=SEU_LINK_EDUZZ_AQUIQUERO ACESSAR AGORAa
+  <button class="floating-cta" onclick="window.location.href=linkVIP">QUERO ACESSAR AGORA</button>
 
-  script
+  <script>
     let time = 600;
     const timer = document.getElementById('timer');
 
-    const interval = setInterval(() = {
-      const min = Math.floor(time  60);
+    const interval = setInterval(() => {
+      const min = Math.floor(time / 60);
       const sec = time % 60;
       timer.textContent =
-        String(min).padStart(2, '0') + '' + String(sec).padStart(2, '0');
+        String(min).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
 
-      if (time = 0) {
+      if (time <= 0) {
         clearInterval(interval);
-        timer.textContent = '0000';
+        timer.textContent = '00:00';
         return;
       }
 
       time--;
     }, 1000);
-  script
-body
-html
+  </script>
+</body>
+</html>
